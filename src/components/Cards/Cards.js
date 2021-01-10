@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, H3, P, Button } from './styles'
+import { Container, H3, P, Button, UL, LI, Input } from './styles'
 
 
 export class TodoApp extends React.Component {
@@ -18,16 +18,14 @@ export class TodoApp extends React.Component {
           <TodoList items={this.state.items} />
           <form onSubmit={this.handleSubmit}>
             <H3 htmlFor="new-todo">
-              What needs to be done?
+              Que tenes que hacer?
             </H3>
             <input
               id="new-todo"
               onChange={this.handleChange}
               value={this.state.text}
             />
-            <Button>
-              Add #{this.state.items.length + 1}
-            </Button>
+            <Button variant="success">Añadir tarea #{this.state.items.length + 1}</Button>{' '}
           </form>
         </div>
       </Container>
@@ -57,11 +55,13 @@ export class TodoApp extends React.Component {
 class TodoList extends React.Component {
   render() {
     return (
-      <ul>
+      <UL>
         {this.props.items.map(item => (
-          <li key={item.id}><P>{item.text}</P></li>
+            <LI key={item.id}>
+              <P><Input type="checkbox"/>{item.text}</P>
+            </LI>
         ))}
-      </ul>
+      </UL>
     );
   }
 }
